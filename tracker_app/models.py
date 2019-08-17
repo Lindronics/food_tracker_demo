@@ -10,10 +10,10 @@ class Food(models.Model):
     Information is per gram.
     '''
     name = models.CharField(null=False, max_length=50)
-    calories = models.IntegerField(null=True)
-    fat = models.IntegerField(null=True)
-    carbs = models.IntegerField(null=True)
-    protein = models.IntegerField(null=True)
+    calories = models.FloatField(null=True)
+    fat = models.FloatField(null=True)
+    carbs = models.FloatField(null=True)
+    protein = models.FloatField(null=True)
 
 
 class FoodLog(models.Model):
