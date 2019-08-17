@@ -25,13 +25,21 @@ class FoodLog(models.Model):
     user = models.ForeignKey(User, related_name="food_logs", on_delete=models.CASCADE)
 
 
+class FoodAmount(models.Model):
+    ''' A food item paired with an amount
+    to be used for meals
+    '''
+    food = models.ForeignKey(Food, null=False, on_delete=models.PROTECT)
+    amount = models.FloatField(null=False)
+
+
 class Meal(models.Model):
     ''' A meal consisting of many food items 
     Can have a unit description outlining the meal size (e.g. "one plate")
     '''
     name = models.CharField(null=False, max_length=50)
     unit_description = models.CharField(null=True, max_length=50)
-    ingredients = models.ManyToManyField(FoodLog, related_name='meals')
+    ingredients = models.ManyToManyField(FoodAmount, related_name='meals')
 
 
 class MealLog(models.Model):

@@ -1,0 +1,13 @@
+[
+    {
+        "model": "tracker_app.meallog",
+        "pk": 1,
+        "fields": {
+            "meal": 1,
+            "amount": 2.0,
+            "day": "2019-08-17",
+            "timestamp": "2019-08-17T18:03:48.528Z",
+            "user": 1
+        }
+    }
+]

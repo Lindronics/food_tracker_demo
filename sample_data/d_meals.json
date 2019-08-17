@@ -1,0 +1,16 @@
+[
+    {
+        "model": "tracker_app.meal",
+        "pk": 1,
+        "fields": {
+            "name": "Spag Bol",
+            "unit_description": null,
+            "ingredients": [
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    }
+]

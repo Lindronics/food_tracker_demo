@@ -1,0 +1,24 @@
+[
+    {
+        "model": "tracker_app.foodlog",
+        "pk": 1,
+        "fields": {
+            "food": 3,
+            "amount": 50.0,
+            "day": "2019-08-17",
+            "timestamp": "2019-08-17T18:03:48.528Z",
+            "user": 1
+        }
+    },
+    {
+        "model": "tracker_app.foodlog",
+        "pk": 2,
+        "fields": {
+            "food": 2,
+            "amount": 120.0,
+            "day": "2019-08-17",
+            "timestamp": "2019-08-17T18:03:48.528Z",
+            "user": 1
+        }
+    }
+]
