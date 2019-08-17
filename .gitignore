@@ -1,0 +1,6 @@
+# IDE
+.vscode
+
+# Django
+__pycache__
+*.pyc
