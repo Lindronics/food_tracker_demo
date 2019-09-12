@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from tracker_app import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('about', views.about, name='about'),
+    path('food', views.food, name='food'),
+    path('meals', views.meals, name='meals'),
+    path('community', views.community, name='community'),
 ]
