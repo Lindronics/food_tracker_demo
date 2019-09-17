@@ -1,4 +1,5 @@
 # Food tracker demo
+![](https://github.com/Lindronics/food_tracker_demo/workflows/Django%20tests/badge.svg)
 
 ## About this project
 This project is a demo web app for food and calory tracking. The concept is roughly based on [MyFitnessPal](https://www.myfitnesspal.com/), however with significantly fewer features.
