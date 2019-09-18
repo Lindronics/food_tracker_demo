@@ -1,5 +1,9 @@
 from django.contrib import admin
-from tracker_app.models import Food, FoodLog, FoodAmount, Meal, MealLog
+from tracker_app.models import Day, Food, FoodLog, FoodAmount, Meal, MealLog
+
+
+class DayAdmin(admin.ModelAdmin):
+    list_display = ('date', 'user', )
 
 
 class FoodAdmin(admin.ModelAdmin):
@@ -7,7 +11,7 @@ class FoodAdmin(admin.ModelAdmin):
 
 
 class FoodLogAdmin(admin.ModelAdmin):
-    list_display = ('food', 'amount', 'day', 'timestamp', 'user', )
+    list_display = ('food', 'amount', 'day', 'timestamp', )
 
 
 class FoodAmountAdmin(admin.ModelAdmin):
@@ -19,9 +23,10 @@ class MealAdmin(admin.ModelAdmin):
 
 
 class MealLogAdmin(admin.ModelAdmin):
-    list_display = ('meal', 'amount', 'day', 'timestamp', 'user', )
+    list_display = ('meal', 'amount', 'day', 'timestamp', )
 
 
+admin.site.register(Day, DayAdmin)
 admin.site.register(Food, FoodAdmin)
 admin.site.register(FoodLog, FoodLogAdmin)
 admin.site.register(FoodAmount, FoodAmountAdmin)

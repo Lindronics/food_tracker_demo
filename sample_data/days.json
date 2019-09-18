@@ -1,0 +1,18 @@
+[
+    {
+        "model": "tracker_app.day",
+        "pk": 1,
+        "fields": {
+            "date": "2019-08-17",
+            "user": 1
+        }
+    },
+    {
+        "model": "tracker_app.day",
+        "pk": 1,
+        "fields": {
+            "date": "2019-08-18",
+            "user": 1
+        }
+    }
+]
