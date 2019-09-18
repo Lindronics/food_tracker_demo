@@ -72,3 +72,7 @@ flex: 1;
 }
 
 .overflow-hidden { overflow: hidden; }
+
+.modal-backdrop {
+    z-index: 1000;
+}

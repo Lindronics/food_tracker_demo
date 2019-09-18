@@ -18,3 +18,4 @@ six==1.12.0
 sqlparse==0.3.0
 tqdm==4.32.1
 wrapt==1.11.2
+django-registration-redux==2.6

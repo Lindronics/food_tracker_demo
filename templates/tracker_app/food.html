@@ -2,6 +2,34 @@
 {% load staticfiles %}
 
 {% block content_block %}
-  Test
+<h1>Food items</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Calories</th>
+        <th>Fat</th>
+        <th>Carbs</th>
+        <th>Protein</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in foods %}
+      <tr>
+        <td>{{f.pk}}</td>
+        <td>{{f.name}}</td>
+        <td>{{f.calories}}</td>
+        <td>{{f.fat}}</td>
+        <td>{{f.carbs}}</td>
+        <td>{{f.protein}}</td>
+        <td><a href="#">Details</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock %}

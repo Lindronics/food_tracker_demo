@@ -26,8 +26,15 @@ except django.db.utils.IntegrityError:
 
 
 print('Populating database with sample data...')
-files = sorted(os.listdir(DATA_DIR))
+files = [
+    'days',
+    'foods',
+    'food_logs',
+    'food_amounts',
+    'meals',
+    'meal_logs',
+]
 for fname in tqdm(files):
-    read_sample_data(os.path.join(DATA_DIR, fname))
+    read_sample_data(os.path.join(DATA_DIR, fname + '.json'))
 print(f'Successfully deserialized and added all files in {DATA_DIR}\n')
 
