@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from tracker_app import views
 
@@ -25,4 +25,5 @@ urlpatterns = [
     path('food', views.food, name='food'),
     path('meals', views.meals, name='meals'),
     path('community', views.community, name='community'),
+    path('accounts/', include('registration.backends.simple.urls')),
 ]
