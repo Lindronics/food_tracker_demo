@@ -1,0 +1,18 @@
+{% extends  "tracker_app/base.html" %}
+{% load staticfiles %}
+
+{% block content_block %}
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Welcome back, {{user.username}}</h1>
+    <p class="lead">Placeholder text.</p>
+  </div>
+</div>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <h2> Your day </h2>
+  </div>
+</div>
+
+{% endblock %}
