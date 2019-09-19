@@ -25,9 +25,9 @@ def profile(request, date):
     # Days are created lazily (upon user access)
     day = Day.objects.get_or_create(user=request.user, date=parsed_date)
     context = {
-        'day': day,
+        'today': parsed_date,
         'yesterday': parsed_date - timedelta(days=1),
-        'tomorrow': parsed_date - timedelta(days=2),
+        'tomorrow': parsed_date + timedelta(days=1),
     }
     return render(request, 'tracker_app/profile.html', context=context)
 

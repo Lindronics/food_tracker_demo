@@ -6,6 +6,21 @@
   <div class="container">
     <h1>Welcome back, {{user.username}}</h1>
     <p class="lead">Placeholder text.</p>
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="{% url 'profile' yesterday %}">
+          <span>&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="{% url 'profile' yesterday %}">{{ yesterday }}</a></li>
+      <li class="page-item active"><a class="page-link" href="#">{{ today }}</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'profile' tomorrow %}">{{ tomorrow }}</a></li>
+      <li class="page-item">
+        <a class="page-link" href="{% url 'profile' tomorrow %}">
+          <span>&raquo;</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
 
