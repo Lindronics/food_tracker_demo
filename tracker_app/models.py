@@ -47,7 +47,7 @@ class Meal(models.Model):
 
 class MealLog(models.Model):
     """ A log of a meal """
-    meal = models.ForeignKey(Meal, null=False, on_delete=models.PROTECT)
+    meal = models.ForeignKey(Meal, null=False, on_delete=models.PROTECT, related_name='meal_logs')
     amount = models.FloatField(null=False)
     day = models.ForeignKey(Day, null=False, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.now)
