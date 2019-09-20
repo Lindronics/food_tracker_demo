@@ -7,6 +7,11 @@
   <div class="container">
     <h1>Welcome back, {{user.username}}</h1>
     <p class="lead">Placeholder text.</p>
+  </div>
+</div>
+<div class="jumbotron text-center">
+  <div class="container">
+    <h2>Your day</h2>
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <a class="page-link" href="{% url 'profile' yesterday %}">
@@ -22,12 +27,18 @@
         </a>
       </li>
     </ul>
+    <h2>
+      <span class="badge badge-secondary">{{daily_sum.calories}} cals</span>
+      <span class="badge badge-secondary">{{daily_sum.fat}}g fat</span>
+      <span class="badge badge-secondary">{{daily_sum.carbs}}g carbs</span>
+      <span class="badge badge-secondary">{{daily_sum.protein}}g protein</span>
+    </h2>
   </div>
 </div>
 
 <div class="album py-5 bg-light">
   <div class="container">
-    <h2> Your day </h2>
+    <h2> Foods </h2>
     {% if food_logs %}
     <div class="table-responsive">
       <table class="table table-striped">
