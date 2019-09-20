@@ -1,5 +1,6 @@
 {% extends  "tracker_app/base.html" %}
 {% load staticfiles %}
+{% load multiplication %}
 
 {% block content_block %}
 <div class="jumbotron text-center">
@@ -12,9 +13,9 @@
           <span>&laquo;</span>
         </a>
       </li>
-      <li class="page-item"><a class="page-link" href="{% url 'profile' yesterday %}">{{ yesterday }}</a></li>
-      <li class="page-item active"><a class="page-link" href="#">{{ today }}</a></li>
-      <li class="page-item"><a class="page-link" href="{% url 'profile' tomorrow %}">{{ tomorrow }}</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'profile' yesterday %}">{{yesterday}}</a></li>
+      <li class="page-item active"><a class="page-link" href="#">{{today}}</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'profile' tomorrow %}">{{tomorrow}}</a></li>
       <li class="page-item">
         <a class="page-link" href="{% url 'profile' tomorrow %}">
           <span>&raquo;</span>
@@ -27,6 +28,36 @@
 <div class="album py-5 bg-light">
   <div class="container">
     <h2> Your day </h2>
+    {% if food_logs %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Calories</th>
+            <th>Fat</th>
+            <th>Carbs</th>
+            <th>Protein</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in food_logs %}
+          <tr>
+            <td>{{f.food.name}}</td>
+            <td>{{f.amount}}g</td>
+            <td>{% multiply f.food.calories f.amount %}</td>
+            <td>{% multiply f.food.fat f.amount %}</td>
+            <td>{% multiply f.food.carbs f.amount %}</td>
+            <td>{% multiply f.food.protein f.amount %}</td>
+            <td><a href="#">Details</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
   </div>
 </div>
 

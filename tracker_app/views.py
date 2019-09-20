@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.utils.dateparse import parse_date
 
-from tracker_app.models import Food, Meal, Day
+from tracker_app.models import Food, Meal, Day, FoodLog, MealLog
 
 
 def home(request):
@@ -23,11 +23,16 @@ def profile(request, date):
     parsed_date = parse_date(date)
     
     # Days are created lazily (upon user access)
-    day = Day.objects.get_or_create(user=request.user, date=parsed_date)
+    day = Day.objects.get_or_create(user=request.user, date=parsed_date)[0]
+
+    food_logs = FoodLog.objects.all().filter(day=day)
+    # meal_logs_objects = MealLog.objects.all().filter(day=day)
+
     context = {
         'today': parsed_date,
         'yesterday': parsed_date - timedelta(days=1),
         'tomorrow': parsed_date + timedelta(days=1),
+        'food_logs': food_logs,
     }
     return render(request, 'tracker_app/profile.html', context=context)
 
