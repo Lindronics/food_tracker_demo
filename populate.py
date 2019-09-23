@@ -29,8 +29,8 @@ print('Populating database with sample data...')
 files = [
     'days',
     'foods',
-    'food_logs',
     'food_amounts',
+    'food_logs',
     'meals',
     'meal_logs',
 ]
