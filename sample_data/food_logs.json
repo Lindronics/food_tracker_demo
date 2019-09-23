@@ -3,8 +3,7 @@
         "model": "tracker_app.foodlog",
         "pk": 1,
         "fields": {
-            "food": 3,
-            "amount": 50.0,
+            "food_amount": 5,
             "day": 1,
             "timestamp": "2019-08-17T18:03:48.528Z"
         }
@@ -13,8 +12,7 @@
         "model": "tracker_app.foodlog",
         "pk": 2,
         "fields": {
-            "food": 2,
-            "amount": 120.0,
+            "food_amount": 6,
             "day": 1,
             "timestamp": "2019-08-17T18:03:48.528Z"
         }

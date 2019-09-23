@@ -22,18 +22,17 @@ class Food(models.Model):
     protein = models.FloatField(null=True)
 
 
+class FoodAmount(models.Model):
+    """ A food item paired with an amount to be used for meals and logs """
+    food = models.ForeignKey(Food, null=False, on_delete=models.PROTECT)
+    amount = models.FloatField(null=False)
+
+
 class FoodLog(models.Model):
     """ A log of a food item """
-    food = models.ForeignKey(Food, null=False, on_delete=models.PROTECT)
-    amount = models.FloatField(null=False)
+    food_amount = models.ForeignKey(FoodAmount, null=False, on_delete=models.CASCADE)
     day = models.ForeignKey(Day, null=False, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.now)
-
-
-class FoodAmount(models.Model):
-    """ A food item paired with an amount to be used for meals """
-    food = models.ForeignKey(Food, null=False, on_delete=models.PROTECT)
-    amount = models.FloatField(null=False)
 
 
 class Meal(models.Model):

@@ -11,7 +11,7 @@ class FoodAdmin(admin.ModelAdmin):
 
 
 class FoodLogAdmin(admin.ModelAdmin):
-    list_display = ('food', 'amount', 'day', 'timestamp', )
+    list_display = ('food_amount', 'day', 'timestamp', )
 
 
 class FoodAmountAdmin(admin.ModelAdmin):
