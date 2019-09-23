@@ -26,26 +26,14 @@ def profile(request, date):
     day = Day.objects.get_or_create(user=request.user, date=parsed_date)[0]
 
     food_logs = FoodLog.objects.all().filter(day=day)
-    # meal_logs_objects = MealLog.objects.all().filter(day=day)
-
-    daily_sum = {
-        'calories': 0,
-        'fat': 0,
-        'carbs': 0,
-        'protein': 0,
-    }
-    for log in food_logs:
-        daily_sum['calories'] += log.amount * log.food.calories
-        daily_sum['fat'] += log.amount * log.food.fat
-        daily_sum['carbs'] += log.amount * log.food.carbs
-        daily_sum['protein'] += log.amount * log.food.protein
+    meal_logs = MealLog.objects.all().filter(day=day)
 
     context = {
         'today': parsed_date,
         'yesterday': parsed_date - timedelta(days=1),
         'tomorrow': parsed_date + timedelta(days=1),
         'food_logs': food_logs,
-        'daily_sum': daily_sum,
+        'meal_logs': meal_logs,
     }
     return render(request, 'tracker_app/profile.html', context=context)
 

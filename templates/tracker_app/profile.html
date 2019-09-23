@@ -1,6 +1,6 @@
 {% extends  "tracker_app/base.html" %}
 {% load staticfiles %}
-{% load multiplication %}
+{% load log_utils %}
 
 {% block content_block %}
 <div class="jumbotron text-center">
@@ -28,7 +28,7 @@
       </li>
     </ul>
     <h2>
-      <span class="badge badge-secondary">{{daily_sum.calories}} cals</span>
+      <span class="badge badge-secondary">{% total_product food_logs meal_logs 'calories'%} cals</span>
       <span class="badge badge-secondary">{{daily_sum.fat}}g fat</span>
       <span class="badge badge-secondary">{{daily_sum.carbs}}g carbs</span>
       <span class="badge badge-secondary">{{daily_sum.protein}}g protein</span>
@@ -38,7 +38,7 @@
 
 <div class="album py-5 bg-light">
   <div class="container">
-    <h2> Foods </h2>
+    <h2> Logged food </h2>
     {% if food_logs %}
     <div class="table-responsive">
       <table class="table table-striped">
@@ -54,20 +54,57 @@
           </tr>
         </thead>
         <tbody>
-          {% for f in food_logs %}
+          {% for log in food_logs %}
           <tr>
-            <td>{{f.food.name}}</td>
-            <td>{{f.amount}}g</td>
-            <td>{% multiply f.food.calories f.amount %}</td>
-            <td>{% multiply f.food.fat f.amount %}</td>
-            <td>{% multiply f.food.carbs f.amount %}</td>
-            <td>{% multiply f.food.protein f.amount %}</td>
+            <td>{{log.food_amount.food.name}}</td>
+            <td>{{log.food_amount.amount}}g</td>
+            <td>{% food_product log.food_amount 'calories' %}</td>
+            <td>{% food_product log.food_amount 'fat' %}</td>
+            <td>{% food_product log.food_amount 'carbs' %}</td>
+            <td>{% food_product log.food_amount 'protein' %}</td>
             <td><a href="#">Details</a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
+    {% else %}
+    Nothing logged yet.
+    {% endif %}
+  </div>
+  <div class="container">
+    <h2> Logged meals </h2>
+    {% if meal_logs %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Calories</th>
+            <th>Fat</th>
+            <th>Carbs</th>
+            <th>Protein</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in meal_logs %}
+          <tr>
+            <td>{{m.meal.name}}</td>
+            <td>{{m.amount}} {{m.meal.unit_description}}(s)</td>
+            <td>{% meal_product m 'calories' %}</td>
+            <td>{% meal_product m 'fat' %}</td>
+            <td>{% meal_product m 'carbs' %}</td>
+            <td>{% meal_product m 'protein' %}</td>
+            <td><a href="#">Details</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    Nothing logged yet.
     {% endif %}
   </div>
 </div>
