@@ -14,15 +14,15 @@
     <h2>Your day</h2>
     <ul class="pagination justify-content-center">
       <li class="page-item">
-        <a class="page-link" href="{% url 'profile' yesterday %}">
+        <a class="page-link" href="{% url 'profile' username yesterday %}">
           <span>&laquo;</span>
         </a>
       </li>
-      <li class="page-item"><a class="page-link" href="{% url 'profile' yesterday %}">{{yesterday}}</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'profile' username yesterday %}">{{yesterday}}</a></li>
       <li class="page-item active"><a class="page-link" href="#">{{today}}</a></li>
-      <li class="page-item"><a class="page-link" href="{% url 'profile' tomorrow %}">{{tomorrow}}</a></li>
+      <li class="page-item"><a class="page-link" href="{% url 'profile' username tomorrow %}">{{tomorrow}}</a></li>
       <li class="page-item">
-        <a class="page-link" href="{% url 'profile' tomorrow %}">
+        <a class="page-link" href="{% url 'profile' username tomorrow %}">
           <span>&raquo;</span>
         </a>
       </li>

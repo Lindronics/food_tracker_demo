@@ -2,8 +2,9 @@ from datetime import datetime, timedelta
 
 from django.shortcuts import render, redirect
 from django.utils.dateparse import parse_date
+from django.contrib.auth.decorators import login_required
 
-from tracker_app.models import Food, Meal, Day, FoodLog, MealLog
+from tracker_app.models import Food, Meal, Day, FoodLog, MealLog, User
 
 
 def home(request):
@@ -16,30 +17,34 @@ def about(request):
     return render(request, 'tracker_app/about.html')
 
 
-def profile_today(request):
+@login_required
+def profile_today(request, username):
     """ Default profile view
 
         This view is called when a user navigates to Profile.
         It redirects to the profile view with the current date.
     """
     today = datetime.now().strftime('%Y-%m-%d')
-    return redirect(profile, today)
+    return redirect(profile, username, today)
 
 
-def profile(request, date):
+@login_required
+def profile(request, username, date):
     """ Profile view
 
         This view displays the user profile, as well as food and meal logs.
     """
     parsed_date = parse_date(date)
+    user = User.objects.get(username=username)
 
     # Days are created lazily (upon user access)
-    day = Day.objects.get_or_create(user=request.user, date=parsed_date)[0]
+    day = Day.objects.get_or_create(user=user, date=parsed_date)[0]
 
     food_logs = FoodLog.objects.all().filter(day=day)
     meal_logs = MealLog.objects.all().filter(day=day)
 
     context = {
+        'username': username,
         'today': parsed_date,
         'yesterday': parsed_date - timedelta(days=1),
         'tomorrow': parsed_date + timedelta(days=1),
