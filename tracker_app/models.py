@@ -40,6 +40,7 @@ class Meal(models.Model):
         Can have a unit description outlining the meal size (e.g. "one plate")
     """
     name = models.CharField(null=False, max_length=50)
+    description = models.CharField(default="No description", max_length=300)
     unit_description = models.CharField(null=True, max_length=50)
     ingredients = models.ManyToManyField(FoodAmount, related_name='meals')
 

@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "Spag Bol",
+            "description": "Simple home-made Spaghetti Bolognese with lean beef mince and chopped tomatos",
             "unit_description": "large plate",
             "ingredients": [
                 1,

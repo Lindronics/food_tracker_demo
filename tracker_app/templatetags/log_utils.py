@@ -16,19 +16,30 @@ def food_product(food_amount, key, *args, **kwargs):
         Takes a FoodAmount object and an attribute name (key)
         Returns the attribute value per gram multiplied by the amount
     """
-    return food_amount.amount * getattr(food_amount.food, key)
+    return round(food_amount.amount * getattr(food_amount.food, key), 2)
 
 
 @register.simple_tag()
-def meal_product(meal_log, key, *args, **kwargs):
-    """ Template tag function for getting true calory (etc.) values of MealLogs.
+def food_product_mult(food_amount, multiplier, key, *args, **kwargs):
+    """ Template tag for getting true calory (etc.) values of FoodAmounts 
+        multiplied with a constant.
 
-        Takes a MealLog object and attribute name (key)
-        Returns the food_product multiplied by the meal size
+        Takes a FoodAmount object, multiplier and an attribute name (key)
+        Returns the food_product times the multiplier
+    """
+    return round(food_product(food_amount, key) * multiplier, 2)
+
+
+@register.simple_tag()
+def meal_product(meal, amount, key, *args, **kwargs):
+    """ Template tag function for getting true calory (etc.) values of Meals.
+
+        Takes a Meal object, an amount and attribute name (key)
+        Returns the food_product multiplied by the amount
     """
     products = [food_product(amount, key)
-                for amount in meal_log.meal.ingredients.all()]
-    return sum(products) * meal_log.amount
+                for amount in meal.ingredients.all()]
+    return round(sum(products) * amount, 2)
 
 
 @register.simple_tag()
@@ -39,6 +50,6 @@ def total_product(food_logs, meal_logs, key, *args, **kwargs):
         Takes lists of FoodLog and MealLog objects and an attribute name (key)
         Returns the total sum over the key attribute
     """
-    total = sum(meal_product(m, key) for m in meal_logs) + \
+    total = sum(meal_product(m.meal, m.amount, key) for m in meal_logs) + \
         sum(food_product(f.food_amount, key) for f in food_logs)
-    return total
+    return round(total, 2)

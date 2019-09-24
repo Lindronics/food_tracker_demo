@@ -26,6 +26,7 @@ urlpatterns = [
     path('profiles/<str:username>/<str:date>', views.profile, name='profile'),
     path('food', views.food, name='food'),
     path('meals', views.meals, name='meals'),
+    path('meals/<int:meal_id>', views.meal, name='meal'),
     path('community', views.community, name='community'),
     path('accounts/', include('registration.backends.simple.urls')),
 ]

@@ -5,7 +5,7 @@
 <section class="jumbotron text-center">
   <div class="container">
     <h1 class="jumbotron-heading">Meals</h1>
-    <p class="lead text-muted">Our database contains {{ meals_total_count }} user-created meals.</p>
+    <p class="lead text-muted">Our database contains {{meals_total_count}} user-created meals.</p>
     <p>
       <a href="#" class="btn btn-primary my-2">Create a new meal</a>
     </p>
@@ -27,13 +27,13 @@
               dy=".3em">Thumbnail</text>
           </svg>
           <div class="card-body">
-            <h4>{{ meal.name }}</h4>
-            <p class="card-text">{{ meal.unit_description }}</p>
+            <h4>{{meal.name}}</h4>
+            <p class="card-text">{{meal.description|truncatewords:15}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View details</button>
+                <a class="btn btn-sm btn-outline-secondary" href="{% url 'meal' meal.pk %}">View details</a>
               </div>
-              <small class="text-muted">{{ meal.meal_logs.count }} logs</small>
+              <small class="text-muted">{{meal.meal_logs.count}} logs</small>
             </div>
           </div>
         </div>
