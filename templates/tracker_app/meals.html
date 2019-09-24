@@ -31,7 +31,7 @@
             <p class="card-text">{{ meal.unit_description }}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View details</button>
+                <a class="btn btn-sm btn-outline-secondary" href="{% url 'meal' meal.pk %}">View details</a>
               </div>
               <small class="text-muted">{{ meal.meal_logs.count }} logs</small>
             </div>

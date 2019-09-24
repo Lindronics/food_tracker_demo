@@ -1,0 +1,49 @@
+{% extends  "tracker_app/base.html" %}
+{% load staticfiles %}
+{% load log_utils %}
+
+{% block content_block %}
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>{{meal.name}}</h1>
+    <p class="lead">Placeholder</p>
+  </div>
+</div>
+<div class="container text-center">
+  <h2>Macros</h2>
+  <h2>
+    <span class="badge badge-secondary">{% meal_product meal 1 'calories' %} cals</span>
+    <span class="badge badge-secondary">{% meal_product meal 1 'fat' %}g fat</span>
+    <span class="badge badge-secondary">{% meal_product meal 1 'carbs' %}g carbs</span>
+    <span class="badge badge-secondary">{% meal_product meal 1 'protein' %}g protein</span>
+  </h2>
+  <h2>Ingredients</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Calories</th>
+          <th>Fat</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for food_amount in meal.ingredients.all %}
+        <tr>
+          <td>{{food_amount.food.name}}</td>
+          <td>{{food_amount.amount}}g</td>
+          <td>{% food_product food_amount 'calories' %}</td>
+          <td>{% food_product food_amount 'fat' %}</td>
+          <td>{% food_product food_amount 'carbs' %}</td>
+          <td>{% food_product food_amount 'protein' %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

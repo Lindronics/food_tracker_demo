@@ -70,7 +70,7 @@ def food(request):
 def meals(request):
     """ Meals view
 
-    Displays the database of meal items.
+        Displays the database of meal items.
     """
     meals = Meal.objects.all()
     context = {
@@ -78,6 +78,17 @@ def meals(request):
         'meals_total_count': len(meals),
     }
     return render(request, 'tracker_app/meals.html', context=context)
+
+
+def meal(request, meal_id):
+    """ Meal view
+
+        Displays details for a meal.
+    """
+    context = {
+        'meal': Meal.objects.get(pk=meal_id)
+    }
+    return render(request, 'tracker_app/meal.html', context=context)
 
 
 def community(request):
