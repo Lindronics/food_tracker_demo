@@ -20,15 +20,15 @@ def food_product(food_amount, key, *args, **kwargs):
 
 
 @register.simple_tag()
-def meal_product(meal_log, key, *args, **kwargs):
-    """ Template tag function for getting true calory (etc.) values of MealLogs.
+def meal_product(meal, amount, key, *args, **kwargs):
+    """ Template tag function for getting true calory (etc.) values of Meals.
 
-        Takes a MealLog object and attribute name (key)
-        Returns the food_product multiplied by the meal size
+        Takes a Meal object, an amount and attribute name (key)
+        Returns the food_product multiplied by the amount
     """
     products = [food_product(amount, key)
-                for amount in meal_log.meal.ingredients.all()]
-    return sum(products) * meal_log.amount
+                for amount in meal.ingredients.all()]
+    return sum(products) * amount
 
 
 @register.simple_tag()
@@ -39,6 +39,6 @@ def total_product(food_logs, meal_logs, key, *args, **kwargs):
         Takes lists of FoodLog and MealLog objects and an attribute name (key)
         Returns the total sum over the key attribute
     """
-    total = sum(meal_product(m, key) for m in meal_logs) + \
+    total = sum(meal_product(m.meal, m.amount, key) for m in meal_logs) + \
         sum(food_product(f.food_amount, key) for f in food_logs)
     return total

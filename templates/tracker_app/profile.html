@@ -93,10 +93,10 @@
           <tr>
             <td>{{m.meal.name}}</td>
             <td>{{m.amount}} {{m.meal.unit_description}}(s)</td>
-            <td>{% meal_product m 'calories' %}</td>
-            <td>{% meal_product m 'fat' %}</td>
-            <td>{% meal_product m 'carbs' %}</td>
-            <td>{% meal_product m 'protein' %}</td>
+            <td>{% meal_product m.meal m.amount 'calories' %}</td>
+            <td>{% meal_product m.meal m.amount 'fat' %}</td>
+            <td>{% meal_product m.meal m.amount 'carbs' %}</td>
+            <td>{% meal_product m.meal m.amount 'protein' %}</td>
             <td><a href="#">Details</a></td>
           </tr>
           {% endfor %}
