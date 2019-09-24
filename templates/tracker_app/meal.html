@@ -10,12 +10,23 @@
   </div>
 </div>
 <div class="container text-center">
+  <form action="{% url 'meal' meal.pk %}">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Portions</span>
+      </div>
+      <input type="number" name="portions" min=0 class="form-control" value={{portions}}>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">Go</button>
+      </div>
+    </div>
+  </form>
   <h2>Macros</h2>
   <h2>
-    <span class="badge badge-secondary">{% meal_product meal 1 'calories' %} cals</span>
-    <span class="badge badge-secondary">{% meal_product meal 1 'fat' %}g fat</span>
-    <span class="badge badge-secondary">{% meal_product meal 1 'carbs' %}g carbs</span>
-    <span class="badge badge-secondary">{% meal_product meal 1 'protein' %}g protein</span>
+    <span class="badge badge-secondary">{% meal_product meal portions 'calories' %} cals</span>
+    <span class="badge badge-secondary">{% meal_product meal portions 'fat' %}g fat</span>
+    <span class="badge badge-secondary">{% meal_product meal portions 'carbs' %}g carbs</span>
+    <span class="badge badge-secondary">{% meal_product meal portions 'protein' %}g protein</span>
   </h2>
   <h2>Ingredients</h2>
   <div class="table-responsive">

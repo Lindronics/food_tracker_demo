@@ -86,7 +86,8 @@ def meal(request, meal_id):
         Displays details for a meal.
     """
     context = {
-        'meal': Meal.objects.get(pk=meal_id)
+        'meal': Meal.objects.get(pk=meal_id),
+        'portions': int(request.GET.get('portions', 1)),
     }
     return render(request, 'tracker_app/meal.html', context=context)
 
