@@ -16,7 +16,7 @@ def food_product(food_amount, key, *args, **kwargs):
         Takes a FoodAmount object and an attribute name (key)
         Returns the attribute value per gram multiplied by the amount
     """
-    return food_amount.amount * getattr(food_amount.food, key)
+    return round(food_amount.amount * getattr(food_amount.food, key), 2)
 
 
 @register.simple_tag()
@@ -28,7 +28,7 @@ def meal_product(meal, amount, key, *args, **kwargs):
     """
     products = [food_product(amount, key)
                 for amount in meal.ingredients.all()]
-    return sum(products) * amount
+    return round(sum(products) * amount, 2)
 
 
 @register.simple_tag()
@@ -41,4 +41,4 @@ def total_product(food_logs, meal_logs, key, *args, **kwargs):
     """
     total = sum(meal_product(m.meal, m.amount, key) for m in meal_logs) + \
         sum(food_product(f.food_amount, key) for f in food_logs)
-    return total
+    return round(total, 2)

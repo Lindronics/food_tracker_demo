@@ -29,9 +29,9 @@
     </ul>
     <h2>
       <span class="badge badge-secondary">{% total_product food_logs meal_logs 'calories'%} cals</span>
-      <span class="badge badge-secondary">{{daily_sum.fat}}g fat</span>
-      <span class="badge badge-secondary">{{daily_sum.carbs}}g carbs</span>
-      <span class="badge badge-secondary">{{daily_sum.protein}}g protein</span>
+      <span class="badge badge-secondary">{% total_product food_logs meal_logs 'fat'%}g fat</span>
+      <span class="badge badge-secondary">{% total_product food_logs meal_logs 'carbs'%}g carbs</span>
+      <span class="badge badge-secondary">{% total_product food_logs meal_logs 'protein'%}g protein</span>
     </h2>
   </div>
 </div>
