@@ -20,6 +20,17 @@ def food_product(food_amount, key, *args, **kwargs):
 
 
 @register.simple_tag()
+def food_product_mult(food_amount, multiplier, key, *args, **kwargs):
+    """ Template tag for getting true calory (etc.) values of FoodAmounts 
+        multiplied with a constant.
+
+        Takes a FoodAmount object, multiplier and an attribute name (key)
+        Returns the food_product times the multiplier
+    """
+    return round(food_product(food_amount, key) * multiplier, 2)
+
+
+@register.simple_tag()
 def meal_product(meal, amount, key, *args, **kwargs):
     """ Template tag function for getting true calory (etc.) values of Meals.
 

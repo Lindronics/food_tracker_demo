@@ -6,14 +6,14 @@
 <div class="jumbotron text-center">
   <div class="container">
     <h1>{{meal.name}}</h1>
-    <p class="lead">Placeholder</p>
+    <p class="lead">{{meal.description}}</p>
   </div>
 </div>
 <div class="container text-center">
   <form action="{% url 'meal' meal.pk %}">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">Portions</span>
+        <span class="input-group-text">{{meal.unit_description}}(s)</span>
       </div>
       <input type="number" name="portions" min=0 class="form-control" value={{portions}}>
       <div class="input-group-append">
@@ -45,11 +45,11 @@
         {% for food_amount in meal.ingredients.all %}
         <tr>
           <td>{{food_amount.food.name}}</td>
-          <td>{{food_amount.amount}}g</td>
-          <td>{% food_product food_amount 'calories' %}</td>
-          <td>{% food_product food_amount 'fat' %}</td>
-          <td>{% food_product food_amount 'carbs' %}</td>
-          <td>{% food_product food_amount 'protein' %}</td>
+          <td>{% multiply food_amount.amount portions %}g</td>
+          <td>{% food_product_mult food_amount portions 'calories' %}</td>
+          <td>{% food_product_mult food_amount portions 'fat' %}</td>
+          <td>{% food_product_mult food_amount portions 'carbs' %}</td>
+          <td>{% food_product_mult food_amount portions 'protein' %}</td>
         </tr>
         {% endfor %}
       </tbody>
