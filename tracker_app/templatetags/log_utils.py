@@ -6,7 +6,7 @@ register = template.Library()
 @register.simple_tag()
 def multiply(a, b, *args, **kwargs):
     """ Simple multiplication function """
-    return a * b
+    return round(a * b, 2)
 
 
 @register.simple_tag()
