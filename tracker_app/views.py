@@ -67,6 +67,27 @@ def food(request):
     return render(request, 'tracker_app/food.html', context=context)
 
 
+def new_food(request):
+    """ New food view
+
+        Allows creation of new food items
+    """
+
+    # If form submitted, create new food
+    if request.method == 'POST':
+        params = dict(request.POST.items())
+        del(params['csrfmiddlewaretoken'])
+
+        # Get values per gram
+        for param in ['calories', 'fat', 'carbs', 'protein']:
+            params[param] = float(params[param]) / 100.0
+            
+        Food.objects.create(**params)
+        return redirect(food)
+
+    return render(request, 'tracker_app/new_food.html')
+
+
 def meals(request):
     """ Meals view
 

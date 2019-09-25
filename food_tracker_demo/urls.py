@@ -25,6 +25,7 @@ urlpatterns = [
     path('profiles/<str:username>', views.profile_today, name='profile_today'),
     path('profiles/<str:username>/<str:date>', views.profile, name='profile'),
     path('food', views.food, name='food'),
+    path('food/new', views.new_food, name='new_food'),
     path('meals', views.meals, name='meals'),
     path('meals/<int:meal_id>', views.meal, name='meal'),
     path('community', views.community, name='community'),
