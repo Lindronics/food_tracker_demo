@@ -97,7 +97,7 @@
             <td>{% meal_product m.meal m.amount 'fat' %}</td>
             <td>{% meal_product m.meal m.amount 'carbs' %}</td>
             <td>{% meal_product m.meal m.amount 'protein' %}</td>
-            <td><a href="#">Details</a></td>
+            <td><a href="{% url 'meal' m.meal.pk %}">Details</a></td>
           </tr>
           {% endfor %}
         </tbody>
