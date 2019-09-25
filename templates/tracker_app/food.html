@@ -1,15 +1,15 @@
 {% extends  "tracker_app/base.html" %}
 {% load staticfiles %}
+{% load log_utils %}
 
 {% block content_block %}
 <section class="jumbotron text-center">
   <div class="container">
     <h1 class="jumbotron-heading">Food items</h1>
     <p class="lead text-muted">Our database contains {{ foods_total_count }} user-added foods.</p>
-    <p class="lead text-muted"> All values below are per gram.</p>
     <p>
       {% if user.is_authenticated %}
-      <a href="#" class="btn btn-primary my-2">Add food</a>
+      <a href="{% url 'new_food' %}" class="btn btn-primary my-2">Add food</a>
       {% endif %}
     </p>
   </div>
@@ -20,10 +20,10 @@
       <tr>
         <th>#</th>
         <th>Name</th>
-        <th>Calories</th>
-        <th>Fat</th>
-        <th>Carbs</th>
-        <th>Protein</th>
+        <th>Calories (100g)</th>
+        <th>Fat (100g)</th>
+        <th>Carbs (100g)</th>
+        <th>Protein (100g)</th>
         <th>Details</th>
       </tr>
     </thead>
@@ -32,10 +32,10 @@
       <tr>
         <td>{{f.pk}}</td>
         <td>{{f.name}}</td>
-        <td>{{f.calories}}</td>
-        <td>{{f.fat}}</td>
-        <td>{{f.carbs}}</td>
-        <td>{{f.protein}}</td>
+        <td>{% multiply f.calories 100 %}</td>
+        <td>{% multiply f.fat 100 %}</td>
+        <td>{% multiply f.carbs 100 %}</td>
+        <td>{% multiply f.protein 100 %}</td>
         <td><a href="#">Details</a></td>
       </tr>
       {% endfor %}

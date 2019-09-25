@@ -1,0 +1,47 @@
+{% extends  "tracker_app/base.html" %}
+{% load staticfiles %}
+
+{% block content_block %}
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Add new food</h1>
+    <p class="lead">Please specify nutritional information.</p>
+  </div>
+</div>
+<div class="container text-center">
+  <form action="{% url 'new_food' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Food name</label>
+      <input type="text" class="form-control" name="name" value="New food">
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>Calories (100g)</label>
+          <input type="number" name="calories" class="form-control" value="0">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>Fat (100g)</label>
+          <input type="number" name="fat" class="form-control" value="0">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>Carbs (100g)</label>
+          <input type="number" name="carbs" class="form-control" value="0">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>Protein (100g)</label>
+          <input type="number" name="protein" class="form-control" value="0">
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>    
+  </form>
+</div>
+{% endblock %}
